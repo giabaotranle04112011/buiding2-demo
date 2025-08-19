@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thiết Kế Website Theo Yêu Cầu — Giá HSSV 60k | Thường 100k | Cao 250k | VIP 500k</title>
+    <meta name="description" content="Dịch vụ thiết kế web theo yêu cầu, tối ưu tốc độ và SEO. Bảng giá rõ ràng: HSSV 60k, Thường 100k, Cao 250k, VIP 500k." />
+    <meta name="theme-color" content="#0b1220" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* Base */
+        :root{
+            --bg:#061224; --card:#071426; --soft:#0d1b2a; --text:#e6f0ff; --muted:#9fb1cc;
+            --accent:#7c4dff; --accent2:#00e0a4; --danger:#ff5c7a; --ring: 0 0 0 4px rgba(124,77,255,.18);
+        }
+        *{box-sizing:border-box}
+        html,body{margin:0;height:100%}
+        body{
+            font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+            background:
+                radial-gradient(900px 500px at 85% -10%, rgba(124,77,255,.08), transparent 40%),
+                radial-gradient(700px 400px at 10% 0%, rgba(0,224,164,.04), transparent 40%),
+                var(--bg);
+            color:var(--text);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+        }
+        a{color:inherit;text-decoration:none}
+        .container{max-width:1100px;margin:0 auto;padding:28px}
+        header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg, rgba(7,20,34,.6), rgba(7,16,26,.4));backdrop-filter: blur(8px) saturate(120%);border-bottom:1px solid rgba(255,255,255,.03)}
+        .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
+        .logo{display:flex;gap:10px;align-items:center;font-weight:900;font-size:18px}
+        .logo .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),#4cf6ca);box-shadow:0 6px 24px rgba(0,224,164,.12)}
+        nav.desktop{display:flex;gap:14px;align-items:center}
+        nav.desktop a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+        nav.desktop a:hover{background:rgba(255,255,255,.02);color:var(--text)}
+        .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent),#9b72ff);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,.06);box-shadow:0 10px 30px rgba(124,77,255,.16);transition:transform .18s ease,box-shadow .18s}
+        .btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(124,77,255,.2)}
+        .btn.outline{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--muted);box-shadow:none}
+        .badge{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted);border:1px solid rgba(255,255,255,.03)}
+        main{padding-bottom:40px}
+        /* Loading overlay */
+        #loading{
+            position:fixed;inset:0;z-index:9999;
+            background:radial-gradient(circle at 50% 50%, rgba(7,14,26,0.95), rgba(4,8,16,0.96));
+            display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:18px;
+            transition:opacity .6s ease, visibility .6s;
+        }
+        #loading.hidden{opacity:0;visibility:hidden;pointer-events:none}
+        .loader{display:flex;gap:10px}
+        .loader span{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 20px var(--accent2);animation:bounce 1s infinite}
+        .loader span:nth-child(2){animation-delay:.18s}
+        .loader span:nth-child(3){animation-delay:.36s}
+        @keyframes bounce{0%,80%,100%{transform:scale(.6);opacity:.6}40%{transform:scale(1.15);opacity:1}}
+        #loading h2{font-size:22px;font-weight:800;letter-spacing:1px;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 18px rgba(124,77,255,.12))}
+        /* Hero */
+        .hero{padding:56px 0 20px}
+        .hero h1{font-size:clamp(26px,5.4vw,44px);line-height:1.05;margin:10px 0}
+        .hero p{color:var(--muted);font-size:16px;max-width:760px;margin:6px 0 12px}
+        .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+        .stat{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.03);border-radius:14px;padding:12px;text-align:center}
+        .stat h3{margin:0;font-size:22px}
+        .stat span{color:var(--muted);font-size:12px}
+        /* Sections */
+        .section{padding:26px 0}
+        h2.section-title{font-size:clamp(20px,3.2vw,32px);margin:0 0 14px}
+        .grid{display:grid;gap:16px}
+        .features{grid-template-columns:repeat(3,minmax(0,1fr))}
+        .feat{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.04);border-radius:14px;padding:16px;transition:transform .18s,box-shadow .18s}
+        .feat:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+        .feat h3{margin:8px 0 6px}
+        .feat p{color:var(--muted);margin:0}
+        /* Pricing */
+        .pricing{grid-template-columns:repeat(4,minmax(0,1fr))}
+        .plan{position:relative;display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:16px;padding:18px;min-height:380px;transition:transform .18s,box-shadow .18s}
+        .plan:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+        .plan.popular{outline:2px solid rgba(124,77,255,.18);box-shadow:0 14px 44px rgba(124,77,255,.08)}
+        .plan .head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .price{font-size:30px;font-weight:900;color:var(--text)}
+        .price small{font-size:13px;color:var(--muted);font-weight:600}
+        .plan ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px}
+        .plan li{display:flex;align-items:flex-start;gap:10px;color:var(--muted)}
+        .plan li svg{flex:0 0 18px;margin-top:3px}
+        .plan .cta{margin-top:auto}
+        .plan .btn{width:100%}
+        /* Steps */
+        .steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+        .step{background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:12px;padding:14px}
+        .step .num{width:36px;height:36px;border-radius:10px;display:inline-grid;place-items:center;background:linear-gradient(135deg,var(--accent2),#65ffd4);font-weight:900;color:#04221a}
+        /* Contact */
+        .contact-card{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:14px;padding:18px}
+        form{display:grid;gap:12px}
+        input, textarea, select{background:#071b31;border:1px solid #1f3650;border-radius:10px;color:#eaf5ff;padding:10px 12px;outline:none}
+        input:focus, textarea:focus, select:focus{box-shadow:var(--ring)}
+        textarea{min-height:120px;resize:vertical}
+        aside .info-box{background:#071828;border:1px solid #16283b;border-radius:10px;padding:12px;color:var(--muted)}
+        footer{padding:28px 0;color:var(--muted);text-align:center}
+        /* Coupon */
+        .coupon{text-align:left;padding:20px;background:linear-gradient(180deg,#081226,#061322);border-radius:12px;color:var(--text)}
+        .coupon .controls{display:flex;gap:8px;align-items:center}
+        .coupon-box{margin-top:6px;font-size:16px;font-weight:700;color:#fff;display:none;background:linear-gradient(90deg,#0b2540,#0b2d2e);padding:8px 12px;border-radius:8px}
+        .coupon-box.show{display:inline-block;animation:fadeIn .35s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+        /* Reveal */
+        .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        /* Responsive */
+        @media (max-width: 960px){
+            .features{grid-template-columns:1fr 1fr}
+            .pricing{grid-template-columns:1fr 1fr}
+            .steps{grid-template-columns:1fr 1fr}
+            .stats{grid-template-columns:1fr 1fr}
+            .contact-card{grid-template-columns:1fr}
+            nav.desktop{display:none}
+        }
+        @media (max-width: 560px){
+            .features,.pricing,.steps{grid-template-columns:1fr}
+            .hero h1{font-size:22px}
+            .badge{font-size:11px;padding:6px 8px}
+            .container{padding:18px}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- LOADING -->
+        <div id="loading" aria-hidden="false">
+            <div class="loader"><span></span><span></span><span></span></div>
+            <h2>WebCraft</h2>
+        </div>
+
+        <div class="container nav">
+            <a class="logo" href="#top"><span class="dot" aria-hidden="true"></span> <span>WebCraft</span></a>
+
+            <nav class="desktop" aria-label="Main navigation">
+                <a href="#dich-vu">Dịch vụ</a>
+                <a href="#bang-gia">Bảng giá</a>
+                <a href="#quy-trinh">Quy trình</a>
+                <a href="#gioithiu">Giới thiệu</a>
+                <a href="#lien-he" class="btn" style="padding:8px 12px">Liên hệ</a>
+            </nav>
+
+            <div class="mobile-actions" style="display:none">
+                <a class="btn" href="#bang-gia">Xem giá</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero" id="top">
+            <span class="badge">Thiết kế theo yêu cầu</span>
+            <h1>Thiết kế Website nhanh, đẹp, chuẩn SEO — giá <span style="background:linear-gradient(135deg,var(--accent2),#4cf6ca);-webkit-background-clip:text;background-clip:text;color:transparent">siêu mềm</span></h1>
+            <p>Nhận thiết kế website theo ý tưởng của bạn: giới thiệu cá nhân, cửa hàng, landing page bán hàng, blog, portfolio… Tốc độ nhanh, giao diện hiện đại, tối ưu điện thoại và máy tính, dễ chỉnh sửa.</p>
+            <div class="hero-cta">
+                <a class="btn" href="#bang-gia">Xem bảng giá</a>
+                <a class="btn outline" href="#mau">Xem mẫu giao diện</a>
+            </div>
+            <div class="stats">
+                <div class="stat"><h3>24-72h</h3><span>Thời gian triển khai</span></div>
+                <div class="stat"><h3>100%</h3><span>Tối ưu di động</span></div>
+                <div class="stat"><h3>SEO cơ bản</h3><span>Meta, tốc độ, cấu trúc</span></div>
+                <div class="stat"><h3>Hỗ trợ</h3><span>Chỉnh sửa nhỏ miễn phí</span></div>
+            </div>
+        </section>
+
+        <!-- COUPON -->
+        <section class="coupon reveal" id="coupon" aria-live="polite">
+            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+                <div style="min-width:0">
+                    <strong style="display:block">🎉 Mã giảm giá</strong>
+                    <small style="color:var(--muted);font-size:13px">1 mã/tháng — lấy ngay, sao chép và dùng khi đặt</small>
+                </div>
+
+                <div class="controls" style="display:flex;gap:8px;align-items:center">
+                    <button id="getCoupon" class="btn" style="padding:8px 12px;font-weight:800">Lấy mã</button>
+
+                    <div id="couponBox" class="coupon-box" role="status" aria-live="polite" style="display:none"></div>
+
+                    <button id="copyCoupon" class="btn outline" style="padding:8px 10px;display:none">Sao chép</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="gioithiu">
+            <h2 class="section-title">Giới thiệu dịch vụ</h2>
+            <div class="reveal" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+                <div style="width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),#253656);display:grid;place-items:center;font-weight:900;font-size:20px;color:#04221a">GB</div>
+                <div style="flex:1;min-width:220px">
+                    <h3 style="margin:0 0 6px">Xin chào — tôi là Gia Bảo</h3>
+                    <p style="margin:0;color:var(--muted)">Người sáng lập & nhà thiết kế, cùng TLGB TEAM phát triển web nhanh, chuẩn SEO và tối ưu di động. Tư vấn ý tưởng, triển khai 24–72h, kèm hướng dẫn và hỗ trợ chỉnh sửa nhỏ sau bàn giao.</p>
+                    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                        <a class="btn outline" href="#mau" aria-label="Xem mẫu giao diện">Xem mẫu</a>
+                        <a class="btn" href="#lien-he" aria-label="Liên hệ đặt làm">Liên hệ & Đặt ngay</a>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:14px">Chúng tôi cung cấp dịch vụ thiết kế website theo yêu cầu với các gói giá hợp lý, phù hợp với học sinh, sinh viên và cá nhân. Từ giao diện đơn giản đến phức tạp, chúng tôi cam kết mang đến sản phẩm chất lượng cao, tối ưu tốc độ và thân thiện với SEO.</p>
+            <details style="margin-top:12px">
+                <summary>Câu hỏi thường gặp</summary>
+                <div style="margin-top:8px;color:var(--muted)">
+                    <p><strong>Nghĩa:</strong> Tôi có thể chỉnh sửa nội dung sau khi bàn giao không? — Có, chúng tôi cung cấp hướng dẫn chi tiết.</p>
+                    <p><strong>Thời gian:</strong> Thông thường từ 24-72 giờ tuỳ độ phức tạp.</p>
+                    <p><strong>Chỉnh sửa:</strong> Hỗ trợ chỉnh sửa nhỏ miễn phí trong 7 ngày sau bàn giao.</p>
+                    <p><strong>Hosting:</strong> Có hỗ trợ cài đặt cơ bản lên hosting nếu bạn cần.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- DỊCH VỤ -->
+        <section class="section" id="dich-vu">
+            <h2 class="section-title">Bạn nhận được gì?</h2>
+            <div class="grid features">
+                <div class="feat"><div class="badge">Giao diện hiện đại</div><h3>Thiết kế đẹp, đúng brand</h3><p>Chọn màu sắc, font, bố cục theo sở thích hoặc nhận tư vấn để có giao diện chuyên nghiệp phù hợp lĩnh vực.</p></div>
+                <div class="feat"><div class="badge">Tối ưu tốc độ</div><h3>Load nhanh & thân thiện SEO</h3><p>Tối ưu ảnh, cấu trúc HTML, thẻ meta, sơ đồ trang; điểm Core Web Vitals thân thiện người dùng.</p></div>
+                <div class="feat"><div class="badge">Dễ chỉnh sửa</div><h3>Code gọn, tài liệu hướng dẫn</h3><p>Bạn dễ thay ảnh, nội dung, giá; có file hướng dẫn hoặc hỗ trợ qua chat.</p></div>
+            </div>
+        </section>
+
+        <!-- BẢNG GIÁ -->
+        <section class="section" id="bang-gia">
+            <h2 class="section-title">Bảng giá minh bạch</h2>
+            <p style="color:var(--muted);margin-top:-6px">Giá theo gói, giao 1 trang cơ bản (có thể mở rộng).</p>
+            <div class="grid pricing" style="margin-top:12px">
+                <article class="plan">
+                    <div class="head">
+                        <div>
+                            <div class="badge">HSSV</div>
+                            <h3 style="margin:8px 0 0">Gói Học sinh / SV</h3>
+                        </div>
+                        <div class="price">60k <small>/ website</small></div>
+                    </div>
+                    <ul>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Trang giới thiệu cơ bản 1-2 mục</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Responsive di động</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tối ưu tốc độ & SEO cơ bản</li>
+                    </ul>
+                    <div class="cta"><a href="#lien-he" class="btn" aria-label="Đặt gói HSSV 60k">Đặt làm ngay</a></div>
+                </article>
+
+                <article class="plan popular">
+                    <div class="head">
+                        <div>
+                            <div class="badge">Phổ biến</div>
+                            <h3 style="margin:8px 0 0">Gói Thường</h3>
+                        </div>
+                        <div class="price">100k <small>/ website</small></div>
+                    </div>
+                    <ul>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Landing page 3-5 mục</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Form liên hệ</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tích hợp mạng xã hội</li>
+                    </ul>
+                    <div class="cta"><a href="#lien-he" class="btn" aria-label="Đặt gói Thường 100k">Đặt làm ngay</a></div>
+                </article>
+
+                <article class="plan">
+                    <div class="head">
+                        <div>
+                            <div class="badge">Nổi bật</div>
+                            <h3 style="margin:8px 0 0">Gói Cao</h3>
+                        </div>
+                        <div class="price">250k <small>/ website</small></div>
+                    </div>
+                    <ul>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Trang mở rộng: danh mục / gallery</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tùy chỉnh giao diện sâu</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hỗ trợ cài hosting cơ bản</li>
+                    </ul>
+                    <div class="cta"><a href="#lien-he" class="btn" aria-label="Đặt gói Cao 250k">Đặt làm ngay</a></div>
+                </article>
+
+                <article class="plan">
+                    <div class="head">
+                        <div>
+                            <div class="badge" style="background:linear-gradient(135deg,#ffd166,#ff8c37);color:#3b2a00;border:none">VIP</div>
+                            <h3 style="margin:8px 0 0">Gói VIP</h3>
+                        </div>
+                        <div class="price">500k <small>/ website</small></div>
+                    </div>
+                    <ul>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Thiết kế theo brief chi tiết, hiệu ứng nâng cao</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tối ưu SEO mở rộng + tư vấn nội dung</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Bảo hành & chỉnh sửa 7 ngày</li>
+                    </ul>
+                    <div class="cta"><a href="#lien-he" class="btn" aria-label="Đặt gói VIP 500k">Đặt làm ngay</a></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- QUY TRÌNH -->
+        <section class="section" id="quy-trinh">
+            <h2 class="section-title">Quy trình làm việc</h2>
+            <div class="grid steps" style="margin-top:12px">
+                <div class="step"><span class="num">1</span><h3 style="margin:8px 0 6px">Trao đổi yêu cầu</h3><p style="color:var(--muted);margin:0">Gửi mô tả, mẫu, nội dung cơ bản.</p></div>
+                <div class="step"><span class="num">2</span><h3 style="margin:8px 0 6px">Thiết kế & demo</h3><p style="color:var(--muted);margin:0">Lên bố cục, gửi bản xem trước.</p></div>
+                <div class="step"><span class="num">3</span><h3 style="margin:8px 0 6px">Hoàn thiện & tối ưu</h3><p style="color:var(--muted);margin:0">Tối ưu tốc độ, SEO cơ bản.</p></div>
+                <div class="step"><span class="num">4</span><h3 style="margin:8px 0 6px">Bàn giao & hướng dẫn</h3><p style="color:var(--muted);margin:0">Giao file + hướng dẫn; hỗ trợ cài đặt cơ bản.</p></div>
+            </div>
+        </section>
+
+        <!-- MẪU -->
+        <section class="section" id="mau">
+            <h2 class="section-title">Mẫu giao diện (demo)</h2>
+            <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px">
+                <div style="aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#253656,#15233a);border:1px solid #2a3b5c;display:grid;place-items:center;color:#89a0c2">Mẫu #1</div>
+                <div style="aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#2a3a55,#122230);border:1px solid #24364f;display:grid;place-items:center;color:#89a0c2">Mẫu #2</div>
+                <div style="aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#24324a,#0f1a2a);border:1px solid #1e3148;display:grid;place-items:center;color:#89a0c2">Mẫu #3</div>
+            </div>
+        </section>
+
+        <!-- LIÊN HỆ -->
+        <section class="section" id="lien-he">
+            <h2 class="section-title">Liên hệ đặt làm</h2>
+
+            <div class="contact-card" style="margin-top:12px">
+                <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                        <div>
+                            <label for="name" style="display:block;font-weight:700;margin-bottom:6px">Tên</label>
+                            <input id="name" name="name" required placeholder="Ví dụ: Bảo" />
+                        </div>
+                        <div>
+                            <label for="package" style="display:block;font-weight:700;margin-bottom:6px">Chọn gói</label>
+                            <select id="package" name="package">
+                                <option>HSSV — 60k</option>
+                                <option>Thường — 100k</option>
+                                <option>Cao — 250k</option>
+                                <option>VIP — 500k</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="desc" style="display:block;font-weight:700;margin-bottom:6px">Mô tả yêu cầu</label>
+                        <textarea id="desc" name="desc" placeholder="Màu tím, có phần giới thiệu + bảng giá + liên hệ, tối ưu điện thoại…"></textarea>
+                    </div>
+
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+                        <button class="btn" type="submit">Gửi yêu cầu qua chat</button>
+
+                        <a class="btn outline" href="#" id="zaloBtn" aria-label="Nhắn Zalo" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px"><path d="M12 2C6.48 2 2 6.03 2 10.5c0 2.9 1.81 5.48 4.58 6.98L6 22l4.25-2.36c.9.22 1.83.34 2.75.34 5.52 0 10-4.03 10-8.5S17.52 2 12 2z" fill="#00a3ff"/><path d="M8 12.5l4.5-3 3 3-4.5 3z" fill="#fff" opacity="0.95"/></svg>
+                            Nhắn Zalo
+                        </a>
+
+                        <a class="btn outline" href="https://messenger.svc.chative.io/site/s51de13cb-e497-4d27-8048-72589981d618?mode=fullpage" target="_blank" rel="noopener noreferrer" aria-label="Chat TLGB TEAM" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px"><path d="M12 2C6.48 2 2 6.03 2 10.5c0 2.9 1.81 5.48 4.58 6.98L6 22l4.25-2.36c.9.22 1.83.34 2.75.34 5.52 0 10-4.03 10-8.5S17.52 2 12 2z" fill="#2e89ff"/><path d="M7.5 11.2L11 8.5l3.5 2.7-3.5 2.8L7.5 11.2z" fill="#fff"/></svg>
+                            Chat TLGB TEAM
+                        </a>
+                    </div>
+
+                    <section class="check-coupon reveal" id="checkCoupon" aria-live="polite" style="margin-top:12px">
+                        <h3 style="margin:6px 0">🔍 Kiểm Tra Mã Giảm Giá</h3>
+                        <p style="color:var(--muted);margin-top:6px">Nhập mã bạn có để kiểm tra xem mã hợp lệ trong tháng hiện tại hay không.</p>
+
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px">
+                            <label for="inputCoupon" style="display:none">Mã giảm giá</label>
+                            <input type="text" id="inputCoupon" placeholder="Nhập mã..." aria-label="Nhập mã giảm giá"
+                                         style="flex:1;min-width:180px;padding:10px;border-radius:10px;border:1px solid #283754;background:#061226;color:var(--text)" />
+
+                            <button id="checkBtn" class="btn outline" type="button" style="padding:8px 12px">Kiểm tra</button>
+
+                            <button id="fillLastBtn" class="btn outline" type="button" style="padding:8px 12px;display:none">Lấy mã gần nhất</button>
+
+                            <button id="copyCheckBtn" class="btn" type="button" style="padding:8px 12px;display:none">Sao chép</button>
+                        </div>
+
+                        <div id="checkResult" class="result" role="status" aria-live="polite"
+                                 style="margin-top:10px;color:var(--muted);min-height:28px"></div>
+                    </section>
+
+                    <p id="formMsg" style="color:var(--muted);margin:8px 0 0"></p>
+                </form>
+
+                <aside>
+                    <div style="display:grid;gap:8px">
+                        <div class="badge">Thông tin nhanh</div>
+                        <div class="info-box">
+                            <strong>Thời gian:</strong> 24–72h (tùy độ phức tạp)<br/>
+                            <strong>Chỉnh sửa nhỏ:</strong> miễn phí trong 3–7 ngày<br/>
+                            <strong>File bàn giao:</strong> .html/.css/.js (hoặc theo yêu cầu)
+                        </div>
+
+                        <div class="info-box"></div>
+                            <strong>Thanh toán:</strong> cọc nhỏ, phần còn lại sau bàn giao<br/>
+                            <strong>Hóa đơn:</strong> có thể xuất bill đơn giản theo yêu cầu
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">© <span id="year"></span> WebCraft — Thiết kế web theo yêu cầu. All rights reserved.</div>
+    </footer>
+
+    <script>
+/*
+ Kept the original optimized JS logic; only minor adjustments expected to work with cleaned markup.
+*/
+(function(){
+    const KEY_CODE = 'webcraft_last_coupon_code';
+    const KEY_MONTH = 'webcraft_last_coupon_month';
+    const KEY_USED = 'webcraft_used_coupons';
+
+    const loadingEl = document.getElementById('loading');
+    const couponBtn = document.getElementById('getCoupon');
+    const couponBox = document.getElementById('couponBox');
+    const copyCouponBtn = document.getElementById('copyCoupon');
+
+    const inp = document.getElementById('inputCoupon');
+    const checkBtn = document.getElementById('checkBtn');
+    const fillLastBtn = document.getElementById('fillLastBtn');
+    const copyCheckBtn = document.getElementById('copyCheckBtn');
+    const checkOut = document.getElementById('checkResult');
+
+    const formMsg = document.getElementById('formMsg');
+
+    const state = { minLoadingMs:600, loadingStart: Date.now(), couponTimer: null };
+
+    function nowMonthKey() {
+        const n = new Date();
+        return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`;
+    }
+
+    function randomCoupon() {
+        const prefix = "TLGB-MGG-";
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let r = "";
+        for (let i = 0; i < 5; i++) r += chars.charAt(Math.floor(Math.random() * chars.length));
+        return prefix + r;
+    }
+
+    function loadUsedSet(){
+        try {
+            const raw = localStorage.getItem(KEY_USED);
+            return new Set(raw ? JSON.parse(raw) : []);
+        } catch (e) { return new Set(); }
+    }
+    function saveUsedSet(set){
+        try { localStorage.setItem(KEY_USED, JSON.stringify([...set])); } catch(e) {}
+    }
+    function isUsedCode(code){
+        if(!code) return false;
+        return loadUsedSet().has(String(code).trim().toUpperCase());
+    }
+    function markCodeUsed(code){
+        if(!code) return;
+        const key = String(code).trim().toUpperCase();
+        const set = loadUsedSet();
+        if(!set.has(key)){
+            set.add(key);
+            saveUsedSet(set);
+            try { localStorage.setItem(KEY_USED, JSON.stringify([...set])); } catch(e){}
+        }
+    }
+
+    const prevOverflow = { html: document.documentElement.style.overflow, body: document.body.style.overflow };
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    function hideLoadingOnce() {
+        if (!loadingEl || loadingEl.classList.contains('hidden')) return;
+        const elapsed = Date.now() - state.loadingStart;
+        const wait = Math.max(0, state.minLoadingMs - elapsed);
+        setTimeout(() => {
+            loadingEl.classList.add('hidden');
+            document.documentElement.style.overflow = prevOverflow.html;
+            document.body.style.overflow = prevOverflow.body;
+        }, wait);
+    }
+    window.addEventListener('load', hideLoadingOnce);
+    setTimeout(hideLoadingOnce, 5000);
+    loadingEl && loadingEl.addEventListener('click', hideLoadingOnce, { once: true });
+
+    function revealOnScroll() {
+        const reveals = document.querySelectorAll('.reveal');
+        for (let el of reveals) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) el.classList.add('active');
+        }
+    }
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    window.addEventListener('load', revealOnScroll);
+
+    function showCouponBox(code, transientMs=5000) {
+        if(!code){ couponBox.style.display='none'; copyCouponBtn.style.display='none'; couponBox.textContent=''; return; }
+        couponBox.textContent = code;
+        couponBox.style.display = 'inline-block';
+        copyCouponBtn.style.display = 'inline-flex';
+        couponBox.classList.add('show');
+        if(state.couponTimer) clearTimeout(state.couponTimer);
+        if(transientMs){
+            state.couponTimer = setTimeout(()=> {
+                couponBox.classList.remove('show');
+                state.couponTimer = null;
+            }, transientMs);
+        }
+    }
+
+    function refreshFillButton() {
+        try {
+            const code = localStorage.getItem(KEY_CODE);
+            const month = localStorage.getItem(KEY_MONTH);
+            if (code && month === nowMonthKey()) {
+                fillLastBtn.style.display = 'inline-flex';
+                fillLastBtn.title = 'Dùng mã vừa phát hành trong tháng này';
+            } else {
+                fillLastBtn.style.display = 'none';
+            }
+        } catch(e){ fillLastBtn.style.display = 'none'; }
+    }
+
+    function initCouponState() {
+        if (!couponBtn) return;
+        try {
+            const now = new Date();
+            const curMonth = nowMonthKey();
+            const lastMonth = localStorage.getItem(KEY_MONTH);
+            if (lastMonth === curMonth) {
+                couponBtn.disabled = true;
+                couponBtn.setAttribute('aria-disabled', 'true');
+                const storedCode = localStorage.getItem(KEY_CODE);
+                if(storedCode) showCouponBox(storedCode, 60000);
+            }
+        } catch(e){}
+        refreshFillButton();
+    }
+
+    couponBtn && couponBtn.addEventListener('click', () => {
+        if (!couponBtn) return;
+        const now = new Date();
+        const curMonth = nowMonthKey();
+        const last = localStorage.getItem(KEY_MONTH);
+        if (last === curMonth) {
+            const nextMonthStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+            const diffMs = nextMonthStart - now;
+            const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+            showCouponBox(`Bạn đã nhận mã trong tháng này. Thử lại sau ${daysLeft} ngày.`, 4000);
+            return;
+        }
+        const code = randomCoupon();
+        try {
+            localStorage.setItem(KEY_MONTH, curMonth);
+            localStorage.setItem(KEY_CODE, code);
+        } catch(e){}
+        couponBtn.disabled = true;
+        couponBtn.setAttribute('aria-disabled', 'true');
+        showCouponBox("🎁 Mã giảm giá của bạn: " + code, 60000);
+    });
+
+    copyCouponBtn && copyCouponBtn.addEventListener('click', async () => {
+        try {
+            const code = couponBox.textContent || localStorage.getItem(KEY_CODE) || '';
+            if(!code) return;
+            await navigator.clipboard.writeText(code);
+            const old = copyCouponBtn.textContent;
+            copyCouponBtn.textContent = 'Đã sao chép';
+            setTimeout(()=> copyCouponBtn.textContent = old, 1200);
+        } catch(e){
+            const t = document.createElement('textarea');
+            t.value = couponBox.textContent || '';
+            document.body.appendChild(t); t.select();
+            try { document.execCommand('copy'); } catch(_) {}
+            t.remove();
+        }
+    });
+
+    function normalize(s){ return String(s||'').trim().toUpperCase(); }
+
+    function checkCoupon() {
+        try {
+            const input = normalize(inp.value);
+            if (!input) { checkOut.textContent = 'Vui lòng nhập mã để kiểm tra.'; checkOut.style.color = 'var(--muted)'; copyCheckBtn.style.display='none'; return; }
+
+            const storedCode = normalize(localStorage.getItem(KEY_CODE));
+            const storedMonth = localStorage.getItem(KEY_MONTH);
+            const curMonth = nowMonthKey();
+
+            if (!storedCode || !storedMonth) {
+                checkOut.textContent = 'Hiện chưa có mã được phát hành. Hãy nhấn "Lấy mã" để tạo mã mới.';
+                checkOut.style.color = 'var(--muted)';
+                copyCheckBtn.style.display='none';
+                return;
+            }
+
+            if (storedMonth !== curMonth) {
+                checkOut.textContent = 'Mã đã hết hạn (không phải mã trong tháng này).';
+                checkOut.style.color = 'var(--muted)';
+                copyCheckBtn.style.display='none';
+                return;
+            }
+
+            if (input === storedCode) {
+                if(isUsedCode(input)){
+                    checkOut.textContent = '❌ Mã đã được sử dụng rồi.';
+                    checkOut.style.color = 'var(--muted)';
+                    copyCheckBtn.style.display='none';
+                    return;
+                }
+                checkOut.textContent = '✅ Mã hợp lệ — bạn được áp dụng giảm giá. Vui lòng sao chép hoặc sử dụng khi đặt.';
+                checkOut.style.color = 'var(--accent2)';
+                copyCheckBtn.style.display='inline-flex';
+                copyCheckBtn.dataset.code = localStorage.getItem(KEY_CODE) || '';
+            } else {
+                checkOut.textContent = '❌ Mã không khớp với mã đã phát hành trong tháng này.';
+                checkOut.style.color = 'var(--muted)';
+                copyCheckBtn.style.display='none';
+            }
+        } catch (e) {
+            checkOut.textContent = 'Có lỗi khi kiểm tra mã. Vui lòng thử lại.';
+            checkOut.style.color = 'var(--muted)';
+            copyCheckBtn.style.display='none';
+        }
+    }
+
+    checkBtn && checkBtn.addEventListener('click', checkCoupon);
+    inp && inp.addEventListener('keydown', (ev)=> { if(ev.key === 'Enter'){ ev.preventDefault(); checkCoupon(); } });
+
+    if(copyCheckBtn){
+        copyCheckBtn.addEventListener('click', async () => {
+            const raw = copyCheckBtn.dataset.code || inp.value || '';
+            const code = String(raw).trim();
+            if(!code) return;
+            if(isUsedCode(code)){
+                checkOut.textContent = '❌ Mã này đã được sử dụng.'; checkOut.style.color = 'var(--muted)'; copyCheckBtn.style.display = 'none'; return;
+            }
+            try {
+                await navigator.clipboard.writeText(code);
+                markCodeUsed(code);
+                checkOut.textContent = '✅ Mã đã sao chép và được đánh dấu là đã dùng.';
+                checkOut.style.color = 'var(--accent2)';
+                copyCheckBtn.textContent = 'Đã sao chép';
+                setTimeout(()=> copyCheckBtn.textContent = 'Sao chép', 1200);
+                copyCheckBtn.style.display = 'none';
+                try {
+                    const last = localStorage.getItem(KEY_CODE) || '';
+                    if(last && last.toUpperCase() === code.toUpperCase()) fillLastBtn.style.display = 'none';
+                } catch(e){}
+            } catch(e){
+                const t = document.createElement('textarea');
+                t.value = code; document.body.appendChild(t); t.select();
+                try { document.execCommand('copy'); markCodeUsed(code);
+                      checkOut.textContent = '✅ Mã đã sao chép (fallback) và được đánh dấu là đã dùng.'; checkOut.style.color='var(--accent2)'; }
+                catch(_) { checkOut.textContent = 'Không thể sao chép tự động. Hãy copy thủ công.'; checkOut.style.color='var(--muted)'; }
+                t.remove();
+                copyCheckBtn.style.display = 'none';
+            }
+        });
+    }
+
+    fillLastBtn && fillLastBtn.addEventListener('click', () => {
+        try {
+            const code = localStorage.getItem(KEY_CODE);
+            if (code) {
+                inp.value = code;
+                checkCoupon();
+            }
+        } catch(e){}
+    });
+
+    window.addEventListener('storage', (ev) => {
+        if (!ev.key) return;
+        if (ev.key === KEY_CODE || ev.key === KEY_MONTH) {
+            try {
+                const now = nowMonthKey();
+                const mm = localStorage.getItem(KEY_MONTH);
+                const c = localStorage.getItem(KEY_CODE);
+                if (mm === now && c) {
+                    couponBtn && (couponBtn.disabled = true) && couponBtn.setAttribute('aria-disabled', 'true');
+                    showCouponBox(c, 60000);
+                } else {
+                    couponBtn && (couponBtn.disabled = false) && couponBtn.removeAttribute('aria-disabled');
+                    showCouponBox(null);
+                }
+            } catch(e){}
+            refreshFillButton();
+        } else if (ev.key === KEY_USED) {
+            try {
+                const curr = (inp && inp.value || '').trim().toUpperCase();
+                if(curr && isUsedCode(curr)){
+                    checkOut.textContent = '❌ Mã đã được sử dụng rồi.';
+                    checkOut.style.color = 'var(--muted)';
+                    if(copyCheckBtn) copyCheckBtn.style.display = 'none';
+                }
+            } catch(e){}
+        }
+    });
+
+    initCouponState();
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const pack = document.getElementById('package').value;
+        const desc = document.getElementById('desc').value.trim();
+        if (!name) { formMsg.textContent = "Vui lòng nhập tên!"; return false; }
+        const msg = `[ĐẶT LÀM WEB]\nTên: ${name}\nGói: ${pack}\nMô tả: ${desc}`;
+        formMsg.textContent = "✅ Yêu cầu đã được gửi! Vui lòng nhắn Zalo hoặc chat để xác nhận.";
+        console.info(msg);
+        return false;
+    }
+    window.handleFormSubmit = handleFormSubmit;
+
+    (function initZalo(){
+        const z = document.getElementById('zaloBtn');
+        if(!z) return;
+        z.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const pack = document.getElementById('package').value;
+            const desc = document.getElementById('desc').value.trim();
+            const msg = encodeURIComponent(`[ĐẶT LÀM WEB]\nTên: ${name}\nGói: ${pack}\nMô tả: ${desc}`);
+            const ZALO_PHONE = '0348707829';
+            window.open('https://zalo.me/' + ZALO_PHONE + '?message=' + msg, '_blank', 'noopener');
+        });
+    })();
+
+    window.webcraftCoupons = {
+        isUsed: isUsedCode,
+        markUsed: markCodeUsed,
+        listUsed: () => [...loadUsedSet()]
+    };
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (document.readyState === 'complete') hideLoadingOnce();
+})();
+    </script>
+</body>
+</html>
