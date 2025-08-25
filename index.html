@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* Base */
         :root{
             --bg:#061224; --card:#071426; --soft:#0d1b2a; --text:#e6f0ff; --muted:#9fb1cc;
             --accent:#7c4dff; --accent2:#00e0a4; --danger:#ff5c7a; --ring: 0 0 0 4px rgba(124,77,255,.18);
@@ -26,6 +25,7 @@
             color:var(--text);
             line-height:1.6;
             -webkit-font-smoothing:antialiased;
+            scroll-behavior: smooth;
         }
         a{color:inherit;text-decoration:none}
         .container{max-width:1100px;margin:0 auto;padding:28px}
@@ -41,7 +41,6 @@
         .btn.outline{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--muted);box-shadow:none}
         .badge{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02);color:var(--muted);border:1px solid rgba(255,255,255,.03)}
         main{padding-bottom:40px}
-        /* Loading overlay */
         #loading{
             position:fixed;inset:0;z-index:9999;
             background:radial-gradient(circle at 50% 50%, rgba(7,14,26,0.95), rgba(4,8,16,0.96));
@@ -55,7 +54,6 @@
         .loader span:nth-child(3){animation-delay:.36s}
         @keyframes bounce{0%,80%,100%{transform:scale(.6);opacity:.6}40%{transform:scale(1.15);opacity:1}}
         #loading h2{font-size:22px;font-weight:800;letter-spacing:1px;background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 18px rgba(124,77,255,.12))}
-        /* Hero */
         .hero{padding:56px 0 20px}
         .hero h1{font-size:clamp(26px,5.4vw,44px);line-height:1.05;margin:10px 0}
         .hero p{color:var(--muted);font-size:16px;max-width:760px;margin:6px 0 12px}
@@ -64,7 +62,6 @@
         .stat{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.03);border-radius:14px;padding:12px;text-align:center}
         .stat h3{margin:0;font-size:22px}
         .stat span{color:var(--muted);font-size:12px}
-        /* Sections */
         .section{padding:26px 0}
         h2.section-title{font-size:clamp(20px,3.2vw,32px);margin:0 0 14px}
         .grid{display:grid;gap:16px}
@@ -73,7 +70,6 @@
         .feat:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
         .feat h3{margin:8px 0 6px}
         .feat p{color:var(--muted);margin:0}
-        /* Pricing */
         .pricing{grid-template-columns:repeat(4,minmax(0,1fr))}
         .plan{position:relative;display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:16px;padding:18px;min-height:380px;transition:transform .18s,box-shadow .18s}
         .plan:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.45)}
@@ -86,11 +82,9 @@
         .plan li svg{flex:0 0 18px;margin-top:3px}
         .plan .cta{margin-top:auto}
         .plan .btn{width:100%}
-        /* Steps */
         .steps{grid-template-columns:repeat(4,minmax(0,1fr))}
         .step{background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:12px;padding:14px}
         .step .num{width:36px;height:36px;border-radius:10px;display:inline-grid;place-items:center;background:linear-gradient(135deg,var(--accent2),#65ffd4);font-weight:900;color:#04221a}
-        /* Contact */
         .contact-card{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;background:linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.005));border:1px solid rgba(255,255,255,.03);border-radius:14px;padding:18px}
         form{display:grid;gap:12px}
         input, textarea, select{background:#071b31;border:1px solid #1f3650;border-radius:10px;color:#eaf5ff;padding:10px 12px;outline:none}
@@ -98,16 +92,19 @@
         textarea{min-height:120px;resize:vertical}
         aside .info-box{background:#071828;border:1px solid #16283b;border-radius:10px;padding:12px;color:var(--muted)}
         footer{padding:28px 0;color:var(--muted);text-align:center}
-        /* Coupon */
         .coupon{text-align:left;padding:20px;background:linear-gradient(180deg,#081226,#061322);border-radius:12px;color:var(--text)}
         .coupon .controls{display:flex;gap:8px;align-items:center}
         .coupon-box{margin-top:6px;font-size:16px;font-weight:700;color:#fff;display:none;background:linear-gradient(90deg,#0b2540,#0b2d2e);padding:8px 12px;border-radius:8px}
         .coupon-box.show{display:inline-block;animation:fadeIn .35s ease}
         @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-        /* Reveal */
         .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
         .reveal.active{opacity:1;transform:translateY(0)}
-        /* Responsive */
+        .mobile-nav-toggle{display:none}
+        .mobile-nav{background:#071426;border:1px solid rgba(255,255,255,.03);border-radius:12px;padding:16px;display:none;flex-direction:column;gap:12px;position:absolute;top:70px;right:28px;width:200px}
+        .mobile-nav a{padding:8px;border-radius:8px;color:var(--muted);font-weight:600}
+        .mobile-nav a:hover{background:rgba(255,255,255,.02);color:var(--text)}
+        .sample-card{transition:transform .2s ease, box-shadow .2s ease}
+        .sample-card:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,.2)}
         @media (max-width: 960px){
             .features{grid-template-columns:1fr 1fr}
             .pricing{grid-template-columns:1fr 1fr}
@@ -115,6 +112,9 @@
             .stats{grid-template-columns:1fr 1fr}
             .contact-card{grid-template-columns:1fr}
             nav.desktop{display:none}
+            .mobile-nav-toggle{display:inline-flex}
+            .mobile-nav.active{display:flex}
+            .mobile-actions{display:flex}
         }
         @media (max-width: 560px){
             .features,.pricing,.steps{grid-template-columns:1fr}
@@ -126,8 +126,7 @@
 </head>
 <body>
     <header>
-        <!-- LOADING -->
-        <div id="loading" aria-hidden="false">
+        <div id="loading" aria-hidden="true">
             <div class="loader"><span></span><span></span><span></span></div>
             <h2>WebCraft</h2>
         </div>
@@ -144,14 +143,24 @@
                 <a href="#lienhe" class="btn" style="padding:8px 12px">Liên hệ</a>
             </nav>
 
-            <div class="mobile-actions" style="display:none">
+            <div class="mobile-actions">
+                <button class="mobile-nav-toggle btn outline" aria-label="Toggle mobile navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="mobile-nav" aria-label="Mobile navigation">
+                    <a href="#dich-vu">Dịch vụ</a>
+                    <a href="#bang-gia">Bảng giá</a>
+                    <a href="#quy-trinh">Quy trình</a>
+                    <a href="#gioithiu">Giới thiệu</a>
+                    <a href="https://vtv24h.netlify.app/">VTV của TLGB</a>
+                    <a href="#lienhe" class="btn">Liên hệ</a>
+                </nav>
                 <a class="btn" href="#bang-gia">Xem giá</a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- HERO -->
         <section class="hero" id="top">
             <span class="badge">Thiết kế theo yêu cầu</span>
             <h1>Thiết kế Website nhanh, đẹp, chuẩn SEO — giá <span style="background:linear-gradient(135deg,var(--accent2),#4cf6ca);-webkit-background-clip:text;background-clip:text;color:transparent">siêu mềm</span></h1>
@@ -168,19 +177,15 @@
             </div>
         </section>
 
-        <!-- COUPON -->
         <section class="coupon reveal" id="coupon" aria-live="polite">
             <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
                 <div style="min-width:0">
                     <strong style="display:block">🎉 Mã giảm giá</strong>
                     <small style="color:var(--muted);font-size:13px">1 mã/tháng — lấy ngay, sao chép và dùng khi đặt</small>
                 </div>
-
-                <div class="controls" style="display:flex;gap:8px;align-items:center">
+                <div class="controls">
                     <button id="getCoupon" class="btn" style="padding:8px 12px;font-weight:800">Lấy mã</button>
-
-                    <div id="couponBox" class="coupon-box" role="status" aria-live="polite" style="display:none"></div>
-
+                    <div id="couponBox" class="coupon-box" role="status" aria-live="polite"></div>
                     <button id="copyCoupon" class="btn outline" style="padding:8px 10px;display:none">Sao chép</button>
                 </div>
             </div>
@@ -195,7 +200,7 @@
                     <p style="margin:0;color:var(--muted)">Người sáng lập & nhà thiết kế, cùng TLGB TEAM phát triển web nhanh, chuẩn SEO và tối ưu di động. Tư vấn ý tưởng, triển khai 24–72h, kèm hướng dẫn và hỗ trợ chỉnh sửa nhỏ sau bàn giao.</p>
                     <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
                         <a class="btn outline" href="#mau" aria-label="Xem mẫu giao diện">Xem mẫu</a>
-                        <a class="btn" href="#lien-he" aria-label="Liên hệ đặt làm">Liên hệ & Đặt ngay</a>
+                        <a class="btn" href="#lienhe" aria-label="Liên hệ đặt làm">Liên hệ & Đặt ngay</a>
                     </div>
                 </div>
             </div>
@@ -211,7 +216,6 @@
             </details>
         </section>
 
-        <!-- DỊCH VỤ -->
         <section class="section" id="dich-vu">
             <h2 class="section-title">Bạn nhận được gì?</h2>
             <div class="grid features">
@@ -221,7 +225,6 @@
             </div>
         </section>
 
-        <!-- BẢNG GIÁ -->
         <section class="section" id="bang-gia">
             <h2 class="section-title">Bảng giá minh bạch</h2>
             <p style="color:var(--muted);margin-top:-6px">Giá theo gói, giao 1 trang cơ bản (có thể mở rộng).</p>
@@ -241,7 +244,6 @@
                     </ul>
                     <div class="cta"><a href="https://forms.gle/aZPQW8nKUWjVHxKp7" class="btn" aria-label="Đặt gói HSSV 60k">Đặt làm ngay</a></div>
                 </article>
-
                 <article class="plan popular">
                     <div class="head">
                         <div>
@@ -255,9 +257,8 @@
                         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Form liên hệ</li>
                         <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00e0a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tích hợp mạng xã hội</li>
                     </ul>
-                    <div class="cta"><a href=https://forms.gle/aZPQW8nKUWjVHxKp7" class="btn" aria-label="Đặt gói Thường 100k">Đặt làm ngay</a></div>
+                    <div class="cta"><a href="https://forms.gle/aZPQW8nKUWjVHxKp7" class="btn" aria-label="Đặt gói Thường 100k">Đặt làm ngay</a></div>
                 </article>
-
                 <article class="plan">
                     <div class="head">
                         <div>
@@ -273,7 +274,6 @@
                     </ul>
                     <div class="cta"><a href="https://forms.gle/aZPQW8nKUWjVHxKp7" class="btn" aria-label="Đặt gói Cao 250k">Đặt làm ngay</a></div>
                 </article>
-
                 <article class="plan">
                     <div class="head">
                         <div>
@@ -292,7 +292,6 @@
             </div>
         </section>
 
-        <!-- QUY TRÌNH -->
         <section class="section" id="quy-trinh">
             <h2 class="section-title">Quy trình làm việc</h2>
             <div class="grid steps" style="margin-top:12px">
@@ -302,96 +301,71 @@
                 <div class="step"><span class="num">4</span><h3 style="margin:8px 0 6px">Bàn giao & hướng dẫn</h3><p style="color:var(--muted);margin:0">Giao file + hướng dẫn; hỗ trợ cài đặt cơ bản.</p></div>
             </div>
         </section>
-<!-- Mẫu -->
-<div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
 
-    <a href="https://vtv24h.netlify.app/" target="_blank" style="text-decoration:none">
-        <div style="width:250px; aspect-ratio:16/10; border-radius:12px; background:linear-gradient(135deg,#253656,#15233a); border:1px solid #2a3b5c; display:grid; place-items:center; color:#89a0c2; cursor:pointer;">
-            Mẫu #1
-        </div>
-    </a>
-
-    <a href="https://htvtlgb.netlify.app/" target="_blank" style="text-decoration:none">
-        <div style="width:250px; aspect-ratio:16/10; border-radius:12px; background:linear-gradient(135deg,#2a3a55,#122230); border:1px solid #24364f; display:grid; place-items:center; color:#89a0c2; cursor:pointer;">
-            Mẫu #2
-        </div>
-    </a>
-
-    <a href="https://doanket-quangngai.netlify.app/" target="_blank" style="text-decoration:none">
-        <div style="width:250px; aspect-ratio:16/10; border-radius:12px; background:linear-gradient(135deg,#24324a,#0f1a2a); border:1px solid #1e3148; display:grid; place-items:center; color:#89a0c2; cursor:pointer;">
-            Mẫu #3
-        </div>
-    </a>
-    
-    <a href="https://baovn.netlify.app/?fbclid=IwQ0xDSwMUlzZleHRuA2FlbQIxMQABHpXCuEltphHXJyHAUInaQHozLC0b6zTLxscsnjNSrytMyZVkaxvyNR44Jq7E_aem_ogXRLiwnUjYUkD_o1A7zlg" target="_blank" style="text-decoration:none">
-        <div style="width:250px; aspect-ratio:16/10; border-radius:12px; background:linear-gradient(135deg,#24324a,#0f1a2a); border:1px solid #1e3148; display:grid; place-items:center; color:#89a0c2; cursor:pointer;">
-            Mẫu #4
-        </div>
-    </a>
-
-</div>
-
-<p style="text-align:center; color:#555; font-family:Arial, sans-serif; margin-top:12px;">
-    Lưu ý: 3 mẫu web này được thiết kế bởi <strong>Gia Bảo và TLGB TEAM</strong>
-</p>
-
-
-
+        <section class="section" id="mau">
+            <h2 class="section-title">Mẫu giao diện</h2>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <a href="https://vtv24h.netlify.app/" target="_blank" style="text-decoration:none">
+                    <div class="sample-card" style="width:250px;aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#253656,#15233a);border:1px solid #2a3b5c;display:grid;place-items:center;color:#89a0c2;cursor:pointer;">
+                        Mẫu #1
+                    </div>
+                </a>
+                <a href="https://htvtlgb.netlify.app/" target="_blank" style="text-decoration:none">
+                    <div class="sample-card" style="width:250px;aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#2a3a55,#122230);border:1px solid #24364f;display:grid;place-items:center;color:#89a0c2;cursor:pointer;">
+                        Mẫu #2
+                    </div>
+                </a>
+                <a href="https://doanket-quangngai.netlify.app/" target="_blank" style="text-decoration:none">
+                    <div class="sample-card" style="width:250px;aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#24324a,#0f1a2a);border:1px solid #1e3148;display:grid;place-items:center;color:#89a0c2;cursor:pointer;">
+                        Mẫu #3
+                    </div>
+                </a>
+                <a href="https://baovn.netlify.app/?fbclid=IwQ0xDSwMUlzZleHRuA2FlbQIxMQABHpXCuEltphHXJyHAUInaQHozLC0b6zTLxscsnjNSrytMyZVkaxvyNR44Jq7E_aem_ogXRLiwnUjYUkD_o1A7zlg" target="_blank" style="text-decoration:none">
+                    <div class="sample-card" style="width:250px;aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#24324a,#0f1a2a);border:1px solid #1e3148;display:grid;place-items:center;color:#89a0c2;cursor:pointer;">
+                        Mẫu #4
+                    </div>
+                </a>
             </div>
+            <p style="text-align:center;color:#555;font-family:Arial, sans-serif;margin-top:12px;">
+                Lưu ý: 3 mẫu web này được thiết kế bởi <strong>Gia Bảo và TLGB TEAM</strong>
+            </p>
         </section>
 
-                        </div>
+        <section class="section" id="lienhe">
+            <h2 class="section-title">Liên hệ đặt làm</h2>
+            <div class="contact-card reveal">
+                <form id="contactForm" aria-label="Contact form">
+                    <div>
+                        <label for="name" style="display:block;font-weight:700;margin-bottom:6px">Họ và tên</label>
+                        <input id="name" name="name" type="text" placeholder="Nguyễn Văn A" required aria-required="true" />
                     </div>
-                            <section class="section" id="lienhe"></section>
+                    <div>
+                        <label for="email" style="display:block;font-weight:700;margin-bottom:6px">Email</label>
+                        <input id="email" name="email" type="email" placeholder="example@email.com" required aria-required="true" />
+                    </div>
                     <div>
                         <label for="desc" style="display:block;font-weight:700;margin-bottom:6px">Mô tả yêu cầu</label>
-                        <textarea id="desc" name="desc" placeholder="Màu tím, có phần giới thiệu + bảng giá + liên hệ, tối ưu điện thoại…"></textarea>
+                        <textarea id="desc" name="desc" placeholder="Màu tím, có phần giới thiệu + bảng giá + liên hệ, tối ưu điện thoại…" required aria-required="true"></textarea>
                     </div>
-
                     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
                         <button class="btn" type="submit">Gửi yêu cầu qua chat</button>
-
                         <a class="btn outline" href="https://zalo.me/0348707829" id="zaloBtn" aria-label="Nhắn Zalo" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px"><path d="M12 2C6.48 2 2 6.03 2 10.5c0 2.9 1.81 5.48 4.58 6.98L6 22l4.25-2.36c.9.22 1.83.34 2.75.34 5.52 0 10-4.03 10-8.5S17.52 2 12 2z" fill="#00a3ff"/><path d="M8 12.5l4.5-3 3 3-4.5 3z" fill="#fff" opacity="0.95"/></svg>
                             Nhắn Zalo
                         </a>
-
                         <a class="btn outline" href="https://messenger.svc.chative.io/site/s51de13cb-e497-4d27-8048-72589981d618?mode=fullpage" target="_blank" rel="noopener noreferrer" aria-label="Chat TLGB TEAM" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px"><path d="M12 2C6.48 2 2 6.03 2 10.5c0 2.9 1.81 5.48 4.58 6.98L6 22l4.25-2.36c.9.22 1.83.34 2.75.34 5.52 0 10-4.03 10-8.5S17.52 2 12 2z" fill="#2e89ff"/><path d="M7.5 11.2L11 8.5l3.5 2.7-3.5 2.8L7.5 11.2z" fill="#fff"/></svg>
                             Chat TLGB TEAM
                         </a>
-                     <a class="btn outline" href="https://www.facebook.com/gia.bao.tranle.2025?locale=vi_VN" target="_blank" aria-label="Truy cập Facebook" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px">
-                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.85 7.94 9.8v-6.93H7.9v-2.87h2.04V9.8c0-2.02 1.2-3.14 3.04-3.14.88 0 1.8.16 1.8.16v1.98h-1.01c-.99 0-1.3.62-1.3 1.25v1.51h2.21l-.35 2.87h-1.86v6.93C18.56 20.85 22 16.84 22 12z" fill="#1877F2"/>
-                </svg>
-                Facebook
-            </a>
-
+                        <a class="btn outline" href="https://www.facebook.com/gia.bao.tranle.2025?locale=vi_VN" target="_blank" aria-label="Truy cập Facebook" style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex:0 0 16px">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.85 7.94 9.8v-6.93H7.9v-2.87h2.04V9.8c0-2.02 1.2-3.14 3.04-3.14.88 0 1.8.16 1.8.16v1.98h-1.01c-.99 0-1.3.62-1.3 1.25v1.51h2.21l-.35 2.87h-1.86v6.93C18.56 20.85 22 16.84 22 12z" fill="#1877F2"/>
+                            </svg>
+                            Facebook
+                        </a>
                     </div>
-
-                    <section class="check-coupon reveal" id="checkCoupon" aria-live="polite" style="margin-top:12px">
-                        <h3 style="margin:6px 0">🔍 Kiểm Tra Mã Giảm Giá</h3>
-                        <p style="color:var(--muted);margin-top:6px">Nhập mã bạn có để kiểm tra xem mã hợp lệ trong tháng hiện tại hay không.</p>
-
-                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px">
-                            <label for="inputCoupon" style="display:none">Mã giảm giá</label>
-                            <input type="text" id="inputCoupon" placeholder="Nhập mã..." aria-label="Nhập mã giảm giá"
-                                         style="flex:1;min-width:180px;padding:10px;border-radius:10px;border:1px solid #283754;background:#061226;color:var(--text)" />
-
-                            <button id="checkBtn" class="btn outline" type="button" style="padding:8px 12px">Kiểm tra</button>
-
-                            <button id="fillLastBtn" class="btn outline" type="button" style="padding:8px 12px;display:none">Lấy mã gần nhất</button>
-
-                            <button id="copyCheckBtn" class="btn" type="button" style="padding:8px 12px;display:none">Sao chép</button>
-                        </div>
-
-                        <div id="checkResult" class="result" role="status" aria-live="polite"
-                                 style="margin-top:10px;color:var(--muted);min-height:28px"></div>
-                    </section>
-
                     <p id="formMsg" style="color:var(--muted);margin:8px 0 0"></p>
                 </form>
-
                 <aside>
                     <div style="display:grid;gap:8px">
                         <div class="badge">Thông tin nhanh</div>
@@ -400,14 +374,25 @@
                             <strong>Chỉnh sửa nhỏ:</strong> miễn phí trong 3–7 ngày<br/>
                             <strong>File bàn giao:</strong> .html/.css/.js (hoặc theo yêu cầu)
                         </div>
-
-                        <div class="info-box"></div>
+                        <div class="info-box">
                             <strong>Thanh toán:</strong> cọc nhỏ, phần còn lại sau bàn giao<br/>
                             <strong>Hóa đơn:</strong> có thể xuất bill đơn giản theo yêu cầu
                         </div>
                     </div>
                 </aside>
             </div>
+            <section class="check-coupon reveal" id="checkCoupon" aria-live="polite" style="margin-top:12px">
+                <h3 style="margin:6px 0">🔍 Kiểm Tra Mã Giảm Giá</h3>
+                <p style="color:var(--muted);margin-top:6px">Nhập mã bạn có để kiểm tra xem mã hợp lệ trong tháng hiện tại hay không.</p>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px">
+                    <label for="inputCoupon" style="display:none">Mã giảm giá</label>
+                    <input type="text" id="inputCoupon" placeholder="Nhập mã..." aria-label="Nhập mã giảm giá" style="flex:1;min-width:180px;padding:10px;border-radius:10px;border:1px solid #283754;background:#061226;color:var(--text)" />
+                    <button id="checkBtn" class="btn outline" type="button" style="padding:8px 12px">Kiểm tra</button>
+                    <button id="fillLastBtn" class="btn outline" type="button" style="padding:8px 12px;display:none">Lấy mã gần nhất</button>
+                    <button id="copyCheckBtn" class="btn" type="button" style="padding:8px 12px;display:none">Sao chép</button>
+                </div>
+                <div id="checkResult" class="result" role="status" aria-live="polite" style="margin-top:10px;color:var(--muted);min-height:28px"></div>
+            </section>
         </section>
     </main>
 
@@ -416,9 +401,6 @@
     </footer>
 
     <script>
-/*
- Kept the original optimized JS logic; only minor adjustments expected to work with cleaned markup.
-*/
 (function(){
     const KEY_CODE = 'webcraft_last_coupon_code';
     const KEY_MONTH = 'webcraft_last_coupon_month';
@@ -428,16 +410,17 @@
     const couponBtn = document.getElementById('getCoupon');
     const couponBox = document.getElementById('couponBox');
     const copyCouponBtn = document.getElementById('copyCoupon');
-
     const inp = document.getElementById('inputCoupon');
     const checkBtn = document.getElementById('checkBtn');
     const fillLastBtn = document.getElementById('fillLastBtn');
     const copyCheckBtn = document.getElementById('copyCheckBtn');
     const checkOut = document.getElementById('checkResult');
-
+    const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMsg');
+    const navToggle = document.querySelector('.mobile-nav-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
 
-    const state = { minLoadingMs:600, loadingStart: Date.now(), couponTimer: null };
+    const state = { minLoadingMs: 600, loadingStart: Date.now(), couponTimer: null };
 
     function nowMonthKey() {
         const n = new Date();
@@ -452,27 +435,29 @@
         return prefix + r;
     }
 
-    function loadUsedSet(){
+    function loadUsedSet() {
         try {
             const raw = localStorage.getItem(KEY_USED);
             return new Set(raw ? JSON.parse(raw) : []);
         } catch (e) { return new Set(); }
     }
-    function saveUsedSet(set){
+
+    function saveUsedSet(set) {
         try { localStorage.setItem(KEY_USED, JSON.stringify([...set])); } catch(e) {}
     }
-    function isUsedCode(code){
-        if(!code) return false;
+
+    function isUsedCode(code) {
+        if (!code) return false;
         return loadUsedSet().has(String(code).trim().toUpperCase());
     }
-    function markCodeUsed(code){
-        if(!code) return;
+
+    function markCodeUsed(code) {
+        if (!code) return;
         const key = String(code).trim().toUpperCase();
         const set = loadUsedSet();
-        if(!set.has(key)){
+        if (!set.has(key)) {
             set.add(key);
             saveUsedSet(set);
-            try { localStorage.setItem(KEY_USED, JSON.stringify([...set])); } catch(e){}
         }
     }
 
@@ -503,15 +488,20 @@
     window.addEventListener('scroll', revealOnScroll, { passive: true });
     window.addEventListener('load', revealOnScroll);
 
-    function showCouponBox(code, transientMs=5000) {
-        if(!code){ couponBox.style.display='none'; copyCouponBtn.style.display='none'; couponBox.textContent=''; return; }
+    function showCouponBox(code, transientMs = 5000) {
+        if (!code) {
+            couponBox.style.display = 'none';
+            copyCouponBtn.style.display = 'none';
+            couponBox.textContent = '';
+            return;
+        }
         couponBox.textContent = code;
         couponBox.style.display = 'inline-block';
         copyCouponBtn.style.display = 'inline-flex';
         couponBox.classList.add('show');
-        if(state.couponTimer) clearTimeout(state.couponTimer);
-        if(transientMs){
-            state.couponTimer = setTimeout(()=> {
+        if (state.couponTimer) clearTimeout(state.couponTimer);
+        if (transientMs) {
+            state.couponTimer = setTimeout(() => {
                 couponBox.classList.remove('show');
                 state.couponTimer = null;
             }, transientMs);
@@ -528,7 +518,7 @@
             } else {
                 fillLastBtn.style.display = 'none';
             }
-        } catch(e){ fillLastBtn.style.display = 'none'; }
+        } catch(e) { fillLastBtn.style.display = 'none'; }
     }
 
     function initCouponState() {
@@ -541,9 +531,9 @@
                 couponBtn.disabled = true;
                 couponBtn.setAttribute('aria-disabled', 'true');
                 const storedCode = localStorage.getItem(KEY_CODE);
-                if(storedCode) showCouponBox(storedCode, 60000);
+                if (storedCode) showCouponBox(storedCode, 60000);
             }
-        } catch(e){}
+        } catch(e) {}
         refreshFillButton();
     }
 
@@ -563,7 +553,7 @@
         try {
             localStorage.setItem(KEY_MONTH, curMonth);
             localStorage.setItem(KEY_CODE, code);
-        } catch(e){}
+        } catch(e) {}
         couponBtn.disabled = true;
         couponBtn.setAttribute('aria-disabled', 'true');
         showCouponBox("🎁 Mã giảm giá của bạn: " + code, 60000);
@@ -572,102 +562,118 @@
     copyCouponBtn && copyCouponBtn.addEventListener('click', async () => {
         try {
             const code = couponBox.textContent || localStorage.getItem(KEY_CODE) || '';
-            if(!code) return;
+            if (!code) return;
             await navigator.clipboard.writeText(code);
             const old = copyCouponBtn.textContent;
             copyCouponBtn.textContent = 'Đã sao chép';
-            setTimeout(()=> copyCouponBtn.textContent = old, 1200);
-        } catch(e){
+            setTimeout(() => copyCouponBtn.textContent = old, 1200);
+        } catch(e) {
             const t = document.createElement('textarea');
             t.value = couponBox.textContent || '';
-            document.body.appendChild(t); t.select();
+            document.body.appendChild(t);
+            t.select();
             try { document.execCommand('copy'); } catch(_) {}
             t.remove();
         }
     });
 
-    function normalize(s){ return String(s||'').trim().toUpperCase(); }
+    function normalize(s) { return String(s || '').trim().toUpperCase(); }
 
     function checkCoupon() {
         try {
             const input = normalize(inp.value);
-            if (!input) { checkOut.textContent = 'Vui lòng nhập mã để kiểm tra.'; checkOut.style.color = 'var(--muted)'; copyCheckBtn.style.display='none'; return; }
-
+            if (!input) {
+                checkOut.textContent = 'Vui lòng nhập mã để kiểm tra.';
+                checkOut.style.color = 'var(--muted)';
+                copyCheckBtn.style.display = 'none';
+                return;
+            }
             const storedCode = normalize(localStorage.getItem(KEY_CODE));
             const storedMonth = localStorage.getItem(KEY_MONTH);
             const curMonth = nowMonthKey();
-
             if (!storedCode || !storedMonth) {
                 checkOut.textContent = 'Hiện chưa có mã được phát hành. Hãy nhấn "Lấy mã" để tạo mã mới.';
                 checkOut.style.color = 'var(--muted)';
-                copyCheckBtn.style.display='none';
+                copyCheckBtn.style.display = 'none';
                 return;
             }
-
             if (storedMonth !== curMonth) {
                 checkOut.textContent = 'Mã đã hết hạn (không phải mã trong tháng này).';
                 checkOut.style.color = 'var(--muted)';
-                copyCheckBtn.style.display='none';
+                copyCheckBtn.style.display = 'none';
                 return;
             }
-
             if (input === storedCode) {
-                if(isUsedCode(input)){
+                if (isUsedCode(input)) {
                     checkOut.textContent = '❌ Mã đã được sử dụng rồi.';
                     checkOut.style.color = 'var(--muted)';
-                    copyCheckBtn.style.display='none';
+                    copyCheckBtn.style.display = 'none';
                     return;
                 }
                 checkOut.textContent = '✅ Mã hợp lệ — bạn được áp dụng giảm giá. Vui lòng sao chép hoặc sử dụng khi đặt.';
                 checkOut.style.color = 'var(--accent2)';
-                copyCheckBtn.style.display='inline-flex';
+                copyCheckBtn.style.display = 'inline-flex';
                 copyCheckBtn.dataset.code = localStorage.getItem(KEY_CODE) || '';
             } else {
                 checkOut.textContent = '❌ Mã không khớp với mã đã phát hành trong tháng này.';
                 checkOut.style.color = 'var(--muted)';
-                copyCheckBtn.style.display='none';
+                copyCheckBtn.style.display = 'none';
             }
         } catch (e) {
             checkOut.textContent = 'Có lỗi khi kiểm tra mã. Vui lòng thử lại.';
             checkOut.style.color = 'var(--muted)';
-            copyCheckBtn.style.display='none';
+            copyCheckBtn.style.display = 'none';
         }
     }
 
     checkBtn && checkBtn.addEventListener('click', checkCoupon);
-    inp && inp.addEventListener('keydown', (ev)=> { if(ev.key === 'Enter'){ ev.preventDefault(); checkCoupon(); } });
+    inp && inp.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter') {
+            ev.preventDefault();
+            checkCoupon();
+        }
+    });
 
-    if(copyCheckBtn){
-        copyCheckBtn.addEventListener('click', async () => {
-            const raw = copyCheckBtn.dataset.code || inp.value || '';
-            const code = String(raw).trim();
-            if(!code) return;
-            if(isUsedCode(code)){
-                checkOut.textContent = '❌ Mã này đã được sử dụng.'; checkOut.style.color = 'var(--muted)'; copyCheckBtn.style.display = 'none'; return;
-            }
+    copyCheckBtn && copyCheckBtn.addEventListener('click', async () => {
+        const raw = copyCheckBtn.dataset.code || inp.value || '';
+        const code = String(raw).trim();
+        if (!code) return;
+        if (isUsedCode(code)) {
+            checkOut.textContent = '❌ Mã này đã được sử dụng.';
+            checkOut.style.color = 'var(--muted)';
+            copyCheckBtn.style.display = 'none';
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(code);
+            markCodeUsed(code);
+            checkOut.textContent = '✅ Mã đã sao chép và được đánh dấu là đã dùng.';
+            checkOut.style.color = 'var(--accent2)';
+            copyCheckBtn.textContent = 'Đã sao chép';
+            setTimeout(() => copyCheckBtn.textContent = 'Sao chép', 1200);
+            copyCheckBtn.style.display = 'none';
             try {
-                await navigator.clipboard.writeText(code);
+                const last = localStorage.getItem(KEY_CODE) || '';
+                if (last && last.toUpperCase() === code.toUpperCase()) fillLastBtn.style.display = 'none';
+            } catch(e) {}
+        } catch(e) {
+            const t = document.createElement('textarea');
+            t.value = code;
+            document.body.appendChild(t);
+            t.select();
+            try {
+                document.execCommand('copy');
                 markCodeUsed(code);
-                checkOut.textContent = '✅ Mã đã sao chép và được đánh dấu là đã dùng.';
+                checkOut.textContent = '✅ Mã đã sao chép (fallback) và được đánh dấu là đã dùng.';
                 checkOut.style.color = 'var(--accent2)';
-                copyCheckBtn.textContent = 'Đã sao chép';
-                setTimeout(()=> copyCheckBtn.textContent = 'Sao chép', 1200);
-                copyCheckBtn.style.display = 'none';
-                try {
-                    const last = localStorage.getItem(KEY_CODE) || '';
-                    if(last && last.toUpperCase() === code.toUpperCase()) fillLastBtn.style.display = 'none';
-                } catch(e){}
-            } catch(e){
-                const t = document.createElement('textarea');
-                t.value = code; document.body.appendChild(t); t.select();
-                try { document.execCommand('copy'); markCodeUsed(code);
-                      checkOut.textContent = '✅ Mã đã sao chép (fallback) và được đánh dấu là đã dùng.'; checkOut.style.color='var(--accent2)'; }
-                catch(_) { checkOut.textContent = 'Không thể sao chép tự động. Hãy copy thủ công.'; checkOut.style.color='var(--muted)'; }
-                t.remove();
-                copyCheckBtn.style.display = 'none';
+            } catch(_) {
+                checkOut.textContent = 'Không thể sao chép tự động. Hãy copy thủ công.';
+                checkOut.style.color = 'var(--muted)';
             }
-        });
-    }
+            t.remove();
+            copyCheckBtn.style.display = 'none';
+        }
+    });
 
     fillLastBtn && fillLastBtn.addEventListener('click', () => {
         try {
@@ -676,7 +682,37 @@
                 inp.value = code;
                 checkCoupon();
             }
-        } catch(e){}
+        } catch(e) {}
+    });
+
+    form && form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const name = form.querySelector('#name').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const desc = form.querySelector('#desc').value.trim();
+        if (!name || !email || !desc) {
+            formMsg.textContent = 'Vui lòng điền đầy đủ thông tin.';
+            formMsg.style.color = 'var(--danger)';
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            formMsg.textContent = 'Email không hợp lệ.';
+            formMsg.style.color = 'var(--danger)';
+            return;
+        }
+        formMsg.textContent = 'Yêu cầu đã được gửi! Chúng tôi sẽ liên hệ sớm.';
+        formMsg.style.color = 'var(--accent2)';
+        form.reset();
+        setTimeout(() => {
+            formMsg.textContent = '';
+        }, 5000);
+    });
+
+    navToggle && navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !expanded);
+        mobileNav.classList.toggle('active');
+        navToggle.innerHTML = `<i class="fas fa-${expanded ? 'bars' : 'times'}"></i>`;
     });
 
     window.addEventListener('storage', (ev) => {
@@ -693,23 +729,19 @@
                     couponBtn && (couponBtn.disabled = false) && couponBtn.removeAttribute('aria-disabled');
                     showCouponBox(null);
                 }
-            } catch(e){}
+            } catch(e) {}
             refreshFillButton();
         } else if (ev.key === KEY_USED) {
             try {
                 const curr = (inp && inp.value || '').trim().toUpperCase();
-                if(curr && isUsedCode(curr)){
+                if (curr && isUsedCode(curr)) {
                     checkOut.textContent = '❌ Mã đã được sử dụng rồi.';
                     checkOut.style.color = 'var(--muted)';
-                    if(copyCheckBtn) copyCheckBtn.style.display = 'none';
+                    if (copyCheckBtn) copyCheckBtn.style.display = 'none';
                 }
-            } catch(e){}
+            } catch(e) {}
         }
     });
-
-    initCouponState();
-
-
 
     window.webcraftCoupons = {
         isUsed: isUsedCode,
@@ -718,11 +750,8 @@
     };
 
     document.getElementById('year').textContent = new Date().getFullYear();
-
     if (document.readyState === 'complete') hideLoadingOnce();
 })();
     </script>
 </body>
 </html>
-
-
